@@ -4,13 +4,14 @@
 #
 Name     : autofs
 Version  : 5.1.1
-Release  : 1
+Release  : 2
 URL      : https://www.kernel.org/pub/linux/daemons/autofs/v5/autofs-5.1.1.tar.xz
 Source0  : https://www.kernel.org/pub/linux/daemons/autofs/v5/autofs-5.1.1.tar.xz
 Summary  : A tool from automatically mounting and umounting filesystems.
 Group    : Development/Tools
 License  : GPL-2.0
 Requires: autofs-bin
+Requires: autofs-config
 Requires: autofs-lib
 Requires: autofs-doc
 BuildRequires : bison
@@ -27,9 +28,18 @@ include network filesystems, CD-ROMs, floppies, and so forth.
 %package bin
 Summary: bin components for the autofs package.
 Group: Binaries
+Requires: autofs-config
 
 %description bin
 bin components for the autofs package.
+
+
+%package config
+Summary: config components for the autofs package.
+Group: Default
+
+%description config
+config components for the autofs package.
 
 
 %package doc
@@ -43,6 +53,7 @@ doc components for the autofs package.
 %package lib
 Summary: lib components for the autofs package.
 Group: Libraries
+Requires: autofs-config
 
 %description lib
 lib components for the autofs package.
@@ -52,7 +63,7 @@ lib components for the autofs package.
 %setup -q -n autofs-5.1.1
 
 %build
-%configure --disable-static
+%configure --disable-static --with-systemd
 make V=1  %{?_smp_mflags}
 
 %install
@@ -66,6 +77,10 @@ rm -rf %{buildroot}
 %files bin
 %defattr(-,root,root,-)
 /usr/bin/automount
+
+%files config
+%defattr(-,root,root,-)
+/usr/lib/systemd/system/autofs.service
 
 %files doc
 %defattr(-,root,root,-)

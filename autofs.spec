@@ -4,7 +4,7 @@
 #
 Name     : autofs
 Version  : 5.1.1
-Release  : 3
+Release  : 4
 URL      : https://www.kernel.org/pub/linux/daemons/autofs/v5/autofs-5.1.1.tar.xz
 Source0  : https://www.kernel.org/pub/linux/daemons/autofs/v5/autofs-5.1.1.tar.xz
 Summary  : A tool from automatically mounting and umounting filesystems.

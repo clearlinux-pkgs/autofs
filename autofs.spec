@@ -4,7 +4,7 @@
 #
 Name     : autofs
 Version  : 5.1.2
-Release  : 5
+Release  : 6
 URL      : https://www.kernel.org/pub/linux/daemons/autofs/v5/autofs-5.1.2.tar.xz
 Source0  : https://www.kernel.org/pub/linux/daemons/autofs/v5/autofs-5.1.2.tar.xz
 Summary  : A tool from automatically mounting and umounting filesystems.
@@ -15,6 +15,7 @@ Requires: autofs-config
 Requires: autofs-lib
 Requires: autofs-doc
 BuildRequires : bison
+BuildRequires : e2fsprogs-dev
 BuildRequires : flex
 BuildRequires : kmod
 BuildRequires : krb5-dev
@@ -63,10 +64,10 @@ lib components for the autofs package.
 %setup -q -n autofs-5.1.2
 
 %build
-export CFLAGS="$CFLAGS -ffunction-sections -Os "
-export FCFLAGS="$CFLAGS -ffunction-sections -Os "
-export FFLAGS="$CFLAGS -ffunction-sections -Os "
-export CXXFLAGS="$CXXFLAGS -ffunction-sections -Os "
+export CFLAGS="$CFLAGS -Os -ffunction-sections "
+export FCFLAGS="$CFLAGS -Os -ffunction-sections "
+export FFLAGS="$CFLAGS -Os -ffunction-sections "
+export CXXFLAGS="$CXXFLAGS -Os -ffunction-sections "
 %configure --disable-static --with-systemd
 make V=1  %{?_smp_mflags}
 
@@ -107,6 +108,9 @@ rm -rf %{buildroot}
 /usr/lib64/autofs/mount_autofs.so
 /usr/lib64/autofs/mount_bind.so
 /usr/lib64/autofs/mount_changer.so
+/usr/lib64/autofs/mount_ext2.so
+/usr/lib64/autofs/mount_ext3.so
+/usr/lib64/autofs/mount_ext4.so
 /usr/lib64/autofs/mount_generic.so
 /usr/lib64/autofs/mount_nfs.so
 /usr/lib64/autofs/mount_nfs4.so

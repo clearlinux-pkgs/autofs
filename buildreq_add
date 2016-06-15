@@ -5,3 +5,5 @@ bison
 libxml2-dev
 krb5-dev
 kmod
+e2fsprogs-dev
+krb5-dev

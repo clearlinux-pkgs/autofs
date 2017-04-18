@@ -4,7 +4,7 @@
 #
 Name     : autofs
 Version  : 5.1.2
-Release  : 6
+Release  : 7
 URL      : https://www.kernel.org/pub/linux/daemons/autofs/v5/autofs-5.1.2.tar.xz
 Source0  : https://www.kernel.org/pub/linux/daemons/autofs/v5/autofs-5.1.2.tar.xz
 Summary  : A tool from automatically mounting and umounting filesystems.
@@ -64,16 +64,18 @@ lib components for the autofs package.
 %setup -q -n autofs-5.1.2
 
 %build
-export CFLAGS="$CFLAGS -Os -ffunction-sections "
-export FCFLAGS="$CFLAGS -Os -ffunction-sections "
-export FFLAGS="$CFLAGS -Os -ffunction-sections "
-export CXXFLAGS="$CXXFLAGS -Os -ffunction-sections "
+export LANG=C
+export SOURCE_DATE_EPOCH=1492532016
 %configure --disable-static --with-systemd
 make V=1  %{?_smp_mflags}
 
 %install
+export SOURCE_DATE_EPOCH=1492532016
 rm -rf %{buildroot}
 %make_install
+## make_install_append content
+rm -f %{buildroot}autofs
+## make_install_append end
 
 %files
 %defattr(-,root,root,-)

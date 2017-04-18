@@ -1,0 +1,2 @@
+# No sysconfig
+rm -f %{buildroot}autofs

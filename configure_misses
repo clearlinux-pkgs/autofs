@@ -1,0 +1,21 @@
+Configure miss: if libtirpc is requested and available
+Configure miss: if malloc debugging is wanted
+Configure miss: mount
+Configure miss: mount.nfs
+Configure miss: umount
+Configure miss: sssd autofs library
+Configure miss: if mount accepts the -s option
+Configure miss: krb5_principal_get_realm
+Configure miss: yp_match in -lnsl
+Configure miss: res_query in -lresolv
+Configure miss: libhesiod
+Configure miss: rpcsvc/nis.h usability
+Configure miss: rpcsvc/nis.h presence
+Configure miss: rpcsvc/nis.h
+Configure miss: rpcsvc/ypclnt.h usability
+Configure miss: rpcsvc/ypclnt.h presence
+Configure miss: rpcsvc/ypclnt.h
+Configure miss: ldap_initialize in -lldap
+Configure miss: ldap_create_page_control in -lldap
+Configure miss: ldap_parse_page_control in -lldap
+Configure miss: sasl_client_start in -lsasl2

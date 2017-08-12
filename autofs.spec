@@ -4,7 +4,7 @@
 #
 Name     : autofs
 Version  : 5.1.3
-Release  : 11
+Release  : 12
 URL      : https://www.kernel.org/pub/linux/daemons/autofs/v5/autofs-5.1.3.tar.xz
 Source0  : https://www.kernel.org/pub/linux/daemons/autofs/v5/autofs-5.1.3.tar.xz
 Summary  : A tool from automatically mounting and umounting filesystems.
@@ -68,12 +68,12 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1495722064
+export SOURCE_DATE_EPOCH=1502503339
 %configure --disable-static --with-systemd
 make V=1  %{?_smp_mflags}
 
 %install
-export SOURCE_DATE_EPOCH=1495722064
+export SOURCE_DATE_EPOCH=1502503339
 rm -rf %{buildroot}
 %make_install
 ## make_install_append content
@@ -105,10 +105,8 @@ rm -f %{buildroot}autofs
 /usr/lib64/autofs/lookup_hosts.so
 /usr/lib64/autofs/lookup_multi.so
 /usr/lib64/autofs/lookup_nis.so
-/usr/lib64/autofs/lookup_nisplus.so
 /usr/lib64/autofs/lookup_program.so
 /usr/lib64/autofs/lookup_userhome.so
-/usr/lib64/autofs/lookup_yp.so
 /usr/lib64/autofs/mount_afs.so
 /usr/lib64/autofs/mount_autofs.so
 /usr/lib64/autofs/mount_bind.so

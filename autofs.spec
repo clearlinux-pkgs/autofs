@@ -4,7 +4,7 @@
 #
 Name     : autofs
 Version  : 5.1.3
-Release  : 12
+Release  : 13
 URL      : https://www.kernel.org/pub/linux/daemons/autofs/v5/autofs-5.1.3.tar.xz
 Source0  : https://www.kernel.org/pub/linux/daemons/autofs/v5/autofs-5.1.3.tar.xz
 Summary  : A tool from automatically mounting and umounting filesystems.
@@ -20,6 +20,7 @@ BuildRequires : flex
 BuildRequires : kmod
 BuildRequires : krb5-dev
 BuildRequires : libxml2-dev
+Patch1: 0001-Only-create-yp-library-if-enabled.patch
 
 %description
 autofs is a daemon which automatically mounts filesystems when you use
@@ -62,18 +63,19 @@ lib components for the autofs package.
 
 %prep
 %setup -q -n autofs-5.1.3
+%patch1 -p1
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1502503339
+export SOURCE_DATE_EPOCH=1504292186
 %configure --disable-static --with-systemd
 make V=1  %{?_smp_mflags}
 
 %install
-export SOURCE_DATE_EPOCH=1502503339
+export SOURCE_DATE_EPOCH=1504292186
 rm -rf %{buildroot}
 %make_install
 ## make_install_append content
@@ -104,7 +106,6 @@ rm -f %{buildroot}autofs
 /usr/lib64/autofs/lookup_files.so
 /usr/lib64/autofs/lookup_hosts.so
 /usr/lib64/autofs/lookup_multi.so
-/usr/lib64/autofs/lookup_nis.so
 /usr/lib64/autofs/lookup_program.so
 /usr/lib64/autofs/lookup_userhome.so
 /usr/lib64/autofs/mount_afs.so

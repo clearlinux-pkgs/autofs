@@ -4,7 +4,7 @@
 #
 Name     : autofs
 Version  : 5.1.4
-Release  : 17
+Release  : 18
 URL      : https://www.kernel.org/pub/linux/daemons/autofs/v5/autofs-5.1.4.tar.xz
 Source0  : https://www.kernel.org/pub/linux/daemons/autofs/v5/autofs-5.1.4.tar.xz
 Summary  : A tool from automatically mounting and umounting filesystems.
@@ -13,7 +13,8 @@ License  : GPL-2.0
 Requires: autofs-bin
 Requires: autofs-config
 Requires: autofs-lib
-Requires: autofs-doc
+Requires: autofs-license
+Requires: autofs-man
 BuildRequires : bison
 BuildRequires : e2fsprogs-dev
 BuildRequires : flex
@@ -22,6 +23,7 @@ BuildRequires : krb5-dev
 BuildRequires : libxml2-dev
 BuildRequires : pkgconfig(libtirpc)
 Patch1: 0001-Only-create-yp-library-if-enabled.patch
+Patch2: 0002-nsswitch.conf-search-in-usr-share-defaults-etc-nsswi.patch
 
 %description
 autofs is a daemon which automatically mounts filesystems when you use
@@ -32,6 +34,8 @@ include network filesystems, CD-ROMs, floppies, and so forth.
 Summary: bin components for the autofs package.
 Group: Binaries
 Requires: autofs-config
+Requires: autofs-license
+Requires: autofs-man
 
 %description bin
 bin components for the autofs package.
@@ -45,42 +49,55 @@ Group: Default
 config components for the autofs package.
 
 
-%package doc
-Summary: doc components for the autofs package.
-Group: Documentation
-
-%description doc
-doc components for the autofs package.
-
-
 %package lib
 Summary: lib components for the autofs package.
 Group: Libraries
+Requires: autofs-license
 
 %description lib
 lib components for the autofs package.
 
 
+%package license
+Summary: license components for the autofs package.
+Group: Default
+
+%description license
+license components for the autofs package.
+
+
+%package man
+Summary: man components for the autofs package.
+Group: Default
+
+%description man
+man components for the autofs package.
+
+
 %prep
 %setup -q -n autofs-5.1.4
 %patch1 -p1
+%patch2 -p1
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1513718801
+export SOURCE_DATE_EPOCH=1536340452
 %configure --disable-static --with-systemd
 make  %{?_smp_mflags}
 
 %install
-export SOURCE_DATE_EPOCH=1513718801
+export SOURCE_DATE_EPOCH=1536340452
 rm -rf %{buildroot}
+mkdir -p %{buildroot}/usr/share/doc/autofs
+cp COPYING %{buildroot}/usr/share/doc/autofs/COPYING
+cp COPYRIGHT %{buildroot}/usr/share/doc/autofs/COPYRIGHT
 %make_install
-## make_install_append content
+## install_append content
 rm -f %{buildroot}autofs
-## make_install_append end
+## install_append end
 
 %files
 %defattr(-,root,root,-)
@@ -93,11 +110,6 @@ rm -f %{buildroot}autofs
 %files config
 %defattr(-,root,root,-)
 /usr/lib/systemd/system/autofs.service
-
-%files doc
-%defattr(-,root,root,-)
-%doc /usr/share/man/man5/*
-%doc /usr/share/man/man8/*
 
 %files lib
 %defattr(-,root,root,-)
@@ -120,3 +132,17 @@ rm -f %{buildroot}autofs
 /usr/lib64/autofs/mount_nfs4.so
 /usr/lib64/autofs/parse_amd.so
 /usr/lib64/autofs/parse_sun.so
+
+%files license
+%defattr(-,root,root,-)
+/usr/share/doc/autofs/COPYING
+/usr/share/doc/autofs/COPYRIGHT
+
+%files man
+%defattr(-,root,root,-)
+/usr/share/man/man5/auto.master.5
+/usr/share/man/man5/autofs.5
+/usr/share/man/man5/autofs.conf.5
+/usr/share/man/man5/autofs_ldap_auth.conf.5
+/usr/share/man/man8/autofs.8
+/usr/share/man/man8/automount.8

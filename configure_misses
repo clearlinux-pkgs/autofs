@@ -6,7 +6,6 @@ Configure miss: sssd autofs library
 Configure miss: if mount accepts the -s option
 Configure miss: if umount accepts the -c option
 Configure miss: krb5_principal_get_realm
-Configure miss: yp_match in -lnsl
 Configure miss: res_query in -lresolv
 Configure miss: libhesiod
 Configure miss: sys/types.h
@@ -19,10 +18,8 @@ Configure miss: inttypes.h
 Configure miss: stdint.h
 Configure miss: unistd.h
 Configure miss: rpcsvc/nis.h usability
-Configure miss: rpcsvc/nis.h presence
 Configure miss: rpcsvc/nis.h
 Configure miss: rpcsvc/ypclnt.h usability
-Configure miss: rpcsvc/ypclnt.h presence
 Configure miss: rpcsvc/ypclnt.h
 Configure miss: ldap_initialize in -lldap
 Configure miss: ldap_create_page_control in -lldap

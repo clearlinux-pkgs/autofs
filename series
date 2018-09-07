@@ -1,1 +1,2 @@
 0001-Only-create-yp-library-if-enabled.patch
+0002-nsswitch.conf-search-in-usr-share-defaults-etc-nsswi.patch

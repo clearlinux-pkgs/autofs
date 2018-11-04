@@ -1,5 +1,11 @@
 libc.so.6
 libdl.so.2
 libgcc_s.so.1
+liblber-2.4.so.2
+libldap-2.4.so.2
+libnsl.so.1
 libpthread.so.0
+libresolv.so.2
 librt.so.1
+libsystemd.so.0
+libxml2.so.2

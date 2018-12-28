@@ -4,7 +4,7 @@
 #
 Name     : autofs
 Version  : 5.1.5
-Release  : 19
+Release  : 20
 URL      : https://www.kernel.org/pub/linux/daemons/autofs/v5/autofs-5.1.5.tar.xz
 Source0  : https://www.kernel.org/pub/linux/daemons/autofs/v5/autofs-5.1.5.tar.xz
 Summary  : A tool from automatically mounting and umounting filesystems.
@@ -78,12 +78,12 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1541352055
+export SOURCE_DATE_EPOCH=1546022034
 %configure --disable-static --with-systemd
 make  %{?_smp_mflags}
 
 %install
-export SOURCE_DATE_EPOCH=1541352055
+export SOURCE_DATE_EPOCH=1546022034
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/autofs
 cp COPYING %{buildroot}/usr/share/package-licenses/autofs/COPYING

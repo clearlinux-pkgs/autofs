@@ -2,7 +2,6 @@ Configure miss: if malloc debugging is wanted
 Configure miss: mount
 Configure miss: mount.nfs
 Configure miss: umount
-Configure miss: sssd autofs library
 Configure miss: if mount accepts the -s option
 Configure miss: if umount accepts the -c option
 Configure miss: krb5_principal_get_realm

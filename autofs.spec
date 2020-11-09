@@ -4,10 +4,10 @@
 #
 Name     : autofs
 Version  : 5.1.6
-Release  : 23
+Release  : 24
 URL      : https://www.kernel.org/pub/linux/daemons/autofs/v5/autofs-5.1.6.tar.xz
 Source0  : https://www.kernel.org/pub/linux/daemons/autofs/v5/autofs-5.1.6.tar.xz
-Summary  : A kernel-based automounter for Linux
+Summary  : A tool from automatically mounting and umounting filesystems.
 Group    : Development/Tools
 License  : GPL-2.0
 Requires: autofs-bin = %{version}-%{release}
@@ -23,7 +23,9 @@ BuildRequires : libxml2-dev
 BuildRequires : openldap-dev
 BuildRequires : pkgconfig(libsystemd)
 BuildRequires : pkgconfig(libtirpc)
+BuildRequires : sssd-dev
 BuildRequires : xz-dev
+BuildRequires : zlib-dev
 Patch1: 0001-Only-create-yp-library-if-enabled.patch
 Patch2: 0002-nsswitch.conf-search-in-usr-share-defaults-etc-nsswi.patch
 
@@ -68,6 +70,7 @@ man components for the autofs package.
 
 %prep
 %setup -q -n autofs-5.1.6
+cd %{_builddir}/autofs-5.1.6
 %patch1 -p1
 %patch2 -p1
 
@@ -76,21 +79,20 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1571063835
-# -Werror is for werrorists
+export SOURCE_DATE_EPOCH=1604881448
 export GCC_IGNORE_WERROR=1
 export AR=gcc-ar
 export RANLIB=gcc-ranlib
 export NM=gcc-nm
 export CFLAGS="$CFLAGS -O3 -ffat-lto-objects -flto=4 "
-export FCFLAGS="$CFLAGS -O3 -ffat-lto-objects -flto=4 "
-export FFLAGS="$CFLAGS -O3 -ffat-lto-objects -flto=4 "
+export FCFLAGS="$FFLAGS -O3 -ffat-lto-objects -flto=4 "
+export FFLAGS="$FFLAGS -O3 -ffat-lto-objects -flto=4 "
 export CXXFLAGS="$CXXFLAGS -O3 -ffat-lto-objects -flto=4 "
 %configure --disable-static --with-systemd
 make  %{?_smp_mflags}
 
 %install
-export SOURCE_DATE_EPOCH=1571063835
+export SOURCE_DATE_EPOCH=1604881448
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/autofs
 cp %{_builddir}/autofs-5.1.6/COPYING %{buildroot}/usr/share/package-licenses/autofs/74a8a6531a42e124df07ab5599aad63870fa0bd4
@@ -99,6 +101,7 @@ cp %{_builddir}/autofs-5.1.6/COPYRIGHT %{buildroot}/usr/share/package-licenses/a
 ## Remove excluded files
 rm -f %{buildroot}/autofs
 ## install_append content
+# No sysconfig
 rm -f %{buildroot}autofs
 ## install_append end
 
@@ -121,6 +124,7 @@ rm -f %{buildroot}autofs
 /usr/lib64/autofs/lookup_nis.so
 /usr/lib64/autofs/lookup_nisplus.so
 /usr/lib64/autofs/lookup_program.so
+/usr/lib64/autofs/lookup_sss.so
 /usr/lib64/autofs/lookup_userhome.so
 /usr/lib64/autofs/lookup_yp.so
 /usr/lib64/autofs/mount_afs.so

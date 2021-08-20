@@ -5,8 +5,8 @@
 Name     : autofs
 Version  : 5.1.7
 Release  : 26
-URL      : https://www.kernel.org/pub/linux/daemons/autofs/v5/autofs-5.1.7.tar.xz
-Source0  : https://www.kernel.org/pub/linux/daemons/autofs/v5/autofs-5.1.7.tar.xz
+URL      : https://mirrors.kernel.org/pub/linux/daemons/autofs/v5/autofs-5.1.7.tar.xz
+Source0  : https://mirrors.kernel.org/pub/linux/daemons/autofs/v5/autofs-5.1.7.tar.xz
 Summary  : A tool from automatically mounting and umounting filesystems.
 Group    : Development/Tools
 License  : GPL-2.0

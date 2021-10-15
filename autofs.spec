@@ -4,7 +4,7 @@
 #
 Name     : autofs
 Version  : 5.1.7
-Release  : 26
+Release  : 27
 URL      : https://mirrors.kernel.org/pub/linux/daemons/autofs/v5/autofs-5.1.7.tar.xz
 Source0  : https://mirrors.kernel.org/pub/linux/daemons/autofs/v5/autofs-5.1.7.tar.xz
 Summary  : A tool from automatically mounting and umounting filesystems.
@@ -28,6 +28,7 @@ BuildRequires : pkgconfig(libxml-2.0)
 BuildRequires : sssd-dev
 Patch1: 0001-Only-create-yp-library-if-enabled.patch
 Patch2: 0002-nsswitch.conf-search-in-usr-share-defaults-etc-nsswi.patch
+Patch3: 0003-autofs-5.1.7-use-default-stack-size-for-threads.patch
 
 %description
 autofs is a daemon which automatically mounts filesystems when you use
@@ -85,34 +86,32 @@ man components for the autofs package.
 cd %{_builddir}/autofs-5.1.7
 %patch1 -p1
 %patch2 -p1
+%patch3 -p1
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1620765283
+export SOURCE_DATE_EPOCH=1634322106
 export GCC_IGNORE_WERROR=1
-export AR=gcc-ar
-export RANLIB=gcc-ranlib
-export NM=gcc-nm
-export CFLAGS="$CFLAGS -O3 -ffat-lto-objects -flto=4 "
-export FCFLAGS="$FFLAGS -O3 -ffat-lto-objects -flto=4 "
-export FFLAGS="$FFLAGS -O3 -ffat-lto-objects -flto=4 "
-export CXXFLAGS="$CXXFLAGS -O3 -ffat-lto-objects -flto=4 "
+export CFLAGS="$CFLAGS -fno-lto "
+export FCFLAGS="$FFLAGS -fno-lto "
+export FFLAGS="$FFLAGS -fno-lto "
+export CXXFLAGS="$CXXFLAGS -fno-lto "
 %configure --disable-static --with-systemd \
 --with-libtirpc
 make  %{?_smp_mflags}
 
 %install
-export SOURCE_DATE_EPOCH=1620765283
+export SOURCE_DATE_EPOCH=1634322106
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/autofs
 cp %{_builddir}/autofs-5.1.7/COPYING %{buildroot}/usr/share/package-licenses/autofs/76bc12364899ccee70781b6bbcbb4a9ebe07da2d
 cp %{_builddir}/autofs-5.1.7/COPYRIGHT %{buildroot}/usr/share/package-licenses/autofs/bae2eff587b39294edb2c7a790e8c1a0d00ad089
 %make_install
 ## Remove excluded files
-rm -f %{buildroot}/autofs
+rm -f %{buildroot}*/autofs
 ## install_append content
 # No sysconfig
 rm -f %{buildroot}autofs

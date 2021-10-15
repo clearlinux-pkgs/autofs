@@ -1,4 +1,4 @@
-From 03419c73b3995dd46c5549ccc05352d16816e46b Mon Sep 17 00:00:00 2001
+From 0000000000000000000000000000000000000000 Mon Sep 17 00:00:00 2001
 From: William Douglas <william.douglas@intel.com>
 Date: Fri, 1 Sep 2017 18:54:41 +0000
 Subject: [PATCH] Only create yp library if enabled
@@ -10,7 +10,7 @@ yellow pages support.
  1 file changed, 2 insertions(+)
 
 diff --git a/modules/Makefile b/modules/Makefile
-index d9ab06c..2191840 100644
+index 91dc20a..6908da0 100644
 --- a/modules/Makefile
 +++ b/modules/Makefile
 @@ -77,7 +77,9 @@ install: all
@@ -23,6 +23,3 @@ index d9ab06c..2191840 100644
  ifeq ($(LDAP), 1)
  	ln -fs lookup_ldap.so $(INSTALLROOT)$(autofslibdir)/lookup_ldaps.so
  endif
--- 
-2.14.1
-

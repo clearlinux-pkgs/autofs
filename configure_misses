@@ -5,7 +5,6 @@ Configure miss: krb5_principal_get_realm
 Configure miss: libhesiod
 Configure miss: mount
 Configure miss: mount.nfs
-Configure miss: res_query in -lresolv
 Configure miss: rpcsvc/nis.h presence
 Configure miss: sasl_client_start in -lsasl2
 Configure miss: umount

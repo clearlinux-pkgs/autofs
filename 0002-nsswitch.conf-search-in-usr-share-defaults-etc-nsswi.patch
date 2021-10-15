@@ -1,7 +1,7 @@
-From 1383ac847c9e22fb1e0ca08f223386c193bc1e05 Mon Sep 17 00:00:00 2001
+From 0000000000000000000000000000000000000000 Mon Sep 17 00:00:00 2001
 From: Auke Kok <auke-jan.h.kok@intel.com>
 Date: Fri, 7 Sep 2018 10:09:45 -0700
-Subject: [PATCH autofs] nsswitch.conf: search in
+Subject: [PATCH] nsswitch.conf: search in
  /usr/share/defaults/etc/nsswitch.conf as well.
 
 ---
@@ -39,6 +39,3 @@ index 0721ba1..611cc93 100644
  	}
  
  	pthread_cleanup_push(parse_close_nsswitch, nsswitch);
--- 
-2.18.0
-

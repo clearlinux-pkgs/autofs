@@ -1,10 +1,20 @@
 Configure miss: if malloc debugging is wanted
+Configure miss: if malloc debugging is wanted
+Configure miss: if mount accepts the -s option
 Configure miss: if mount accepts the -s option
 Configure miss: if umount accepts the -c option
+Configure miss: if umount accepts the -c option
+Configure miss: krb5_principal_get_realm
 Configure miss: krb5_principal_get_realm
 Configure miss: libhesiod
+Configure miss: libhesiod
+Configure miss: mount
 Configure miss: mount
 Configure miss: mount.nfs
-Configure miss: rpcsvc/nis.h presence
+Configure miss: mount.nfs
+Configure miss: rpcsvc/nis.h
+Configure miss: rpcsvc/nis.h
 Configure miss: sasl_client_start in -lsasl2
+Configure miss: sasl_client_start in -lsasl2
+Configure miss: umount
 Configure miss: umount

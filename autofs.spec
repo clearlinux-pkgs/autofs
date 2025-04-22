@@ -7,7 +7,7 @@
 #
 Name     : autofs
 Version  : 5.1.9
-Release  : 34
+Release  : 35
 URL      : https://mirrors.kernel.org/pub/linux/daemons/autofs/v5/autofs-5.1.9.tar.xz
 Source0  : https://mirrors.kernel.org/pub/linux/daemons/autofs/v5/autofs-5.1.9.tar.xz
 Summary  : A tool from automatically mounting and umounting filesystems.
